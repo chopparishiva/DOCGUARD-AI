@@ -1,0 +1,22 @@
+[build]
+  base = "frontend"
+  command = "npm install && npm run build"
+  publish = "dist"
+
+[dev]
+  command = "npm run dev"
+  port = 3000
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[context.production.environment]
+  NODE_VERSION = "20"
+
+[context.deploy-preview.environment]
+  NODE_VERSION = "20"
+
+[context.branch-deploy.environment]
+  NODE_VERSION = "20"
