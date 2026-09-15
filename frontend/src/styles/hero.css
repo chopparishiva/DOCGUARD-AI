@@ -1,0 +1,289 @@
+/* ============================================================
+   DocGuard AI — Hero styles
+   Bottom-centered, single-viewport hero with video treatment.
+   ============================================================ */
+
+.hero {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: flex-end; /* bottom-centered, NOT vertically centered */
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Hero video treatment — CSS gradient simulation of ambient footage */
+.hero-background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(58% 42% at 50% 108%, rgba(77, 125, 255, 0.20) 0%, transparent 62%),
+    radial-gradient(40% 30% at 18% 96%, rgba(93, 122, 255, 0.10) 0%, transparent 60%),
+    radial-gradient(46% 34% at 84% 92%, rgba(93, 122, 255, 0.08) 0%, transparent 58%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0) 64%, rgba(0, 0, 0, 0.55) 100%);
+  /* slow ambient drift, like a subtle hero video */
+  animation: hero-drift 16s ease-in-out infinite;
+  will-change: transform, background-position;
+}
+
+.hero-gradient::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 90% at 50% -10%, rgba(255, 255, 255, 0.03) 0%, transparent 55%);
+}
+
+@keyframes hero-drift {
+  0%, 100% { background-position: 0 0; }
+  50%      { background-position: 100% 0; }
+}
+
+/* Hero content column: stacked bottom, centered */
+.hero-content {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: var(--hero-max);
+  margin: 0 auto;
+  padding: 0 var(--sp-6) var(--sp-10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Badge */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  margin-bottom: var(--sp-6);
+}
+
+.badge-text {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-dim);
+}
+
+.badge-text::before {
+  content: '✦';
+  color: var(--accent);
+  margin-right: 7px;
+  font-size: 11px;
+}
+
+/* H1 */
+.hero-title {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: clamp(40px, 6vw, 76px);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin-bottom: var(--sp-6);
+  text-wrap: balance;
+}
+
+/* Instrument Serif italic treatment for the AI/product phrase */
+.serif-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  background: linear-gradient(180deg, #ffffff 8%, #bcd0ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  padding-right: 0.06em;
+}
+
+/* Lede */
+.hero-lede {
+  max-width: 560px;
+  font-size: clamp(16px, 1.8vw, 19px);
+  line-height: 1.55;
+  color: var(--text-dim);
+  margin-bottom: var(--sp-8);
+}
+
+/* CTA row */
+.hero-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--sp-12);
+}
+
+/* --- Liquid-glass CTA buttons --- */
+.cta-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 30px;
+  border-radius: var(--radius-pill);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition:
+    transform var(--t-fast) var(--ease-out),
+    box-shadow var(--t-med) var(--ease-out),
+    background var(--t-med) var(--ease-out);
+  overflow: hidden;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.cta-button:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+/* Primary — liquid glass with soft glow */
+.cta-button--primary {
+  color: #ffffff;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.03)) padding-box,
+    linear-gradient(135deg, rgba(122, 162, 255, 0.55), rgba(77, 125, 255, 0.12) 45%, rgba(255, 255, 255, 0.18)) border-box;
+  border: 1px solid transparent;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 1px 0 rgba(0, 0, 0, 0.5),
+    0 14px 40px -10px var(--accent-glow);
+}
+
+.cta-button--primary:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 1px 0 rgba(0, 0, 0, 0.5),
+    0 20px 52px -12px var(--accent-glow);
+}
+
+.cta-button--primary .cta-button__glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(120% 140% at 50% -20%, rgba(255, 255, 255, 0.16) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+/* Secondary — quiet glass */
+.cta-button--secondary {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.cta-button--secondary:hover {
+  border-color: rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* --- Bottom stats --- */
+.hero-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+  width: 100%;
+  padding-top: var(--sp-6);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.stat-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 4px var(--sp-5);
+  white-space: nowrap;
+}
+
+.stat-item + .stat-item {
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.stat-value {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-mute);
+}
+
+/* --- Entrance animations (CSS keyframes, staggered) --- */
+.animate-fade-in-up {
+  animation: fade-in-up var(--t-slow) var(--ease-out) both;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-gradient {
+    animation: none;
+  }
+}
+
+/* Mobile: hero stacks and keeps some breathing room */
+@media (max-width: 767px) {
+  .hero {
+    align-items: flex-end;
+    min-height: auto;
+  }
+  .hero-content {
+    padding: var(--sp-8) var(--sp-5) var(--sp-8);
+  }
+  .hero-cta {
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-8);
+  }
+  .cta-button {
+    width: 100%;
+    max-width: 340px;
+    padding: 13px 20px;
+  }
+  .stat-item {
+    padding: 4px var(--sp-3);
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+  .stat-item + .stat-item {
+    border-left: none;
+  }
+}

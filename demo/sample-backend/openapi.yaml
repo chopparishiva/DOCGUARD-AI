@@ -1,0 +1,38 @@
+openapi: 3.0.3
+info:
+  title: Sample API
+  version: 1.0.0
+  description: Sample backend from before the /users → /users/{user_id} change
+paths:
+  /users:
+    get:
+      summary: Get all users
+      responses:
+        '200':
+          description: A list of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+    post:
+      summary: Create a user
+      parameters:
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The created user
+          content:
+            application/json:
+              schema:
+                type: object
