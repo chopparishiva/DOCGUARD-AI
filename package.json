@@ -1,0 +1,23 @@
+{
+  "name": "testing1",
+  "version": "1.0.0",
+  "description": "Autonomous API Documentation Agent — detects changes in API code, compares them against existing OpenAPI documentation, automatically generates the required documentation updates, validates the result, and reports synchronization status.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chopparishiva/DOCGUARD-AI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chopparishiva/DOCGUARD-AI/issues"
+  },
+  "homepage": "https://github.com/chopparishiva/DOCGUARD-AI#readme"
+}
